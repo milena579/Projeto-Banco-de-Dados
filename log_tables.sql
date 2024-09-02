@@ -13,7 +13,7 @@ CREATE TABLE LogUsuario (
     IDUsuario int not null,
     IDpermissao int,
     Nome varchar(255) not null,
-    CPF int not null,
+    CPF varchar(25) not null,
     DataNasc date not null,
     DataCadastro datetime,
     Acao varchar(100)
@@ -22,8 +22,8 @@ CREATE TABLE LogUsuario (
 CREATE TABLE LogEndereco(
 	IDLogEndereco int primary key not null auto_increment,
     IDEndereco int not null,
-    CEP int not null,
-    Numero int not null,
+    CEP varchar(50) not null,
+    Numero varchar(50) not null,
     Complemento varchar(50),
 	IDUsuario int not null,
     Acao varchar(100)
@@ -32,9 +32,9 @@ CREATE TABLE LogEndereco(
 CREATE TABLE LogTelefone (
 	IDLogTelefone int primary key not null auto_increment,
     IDTelefone int not null,
-    CodigoPais int not null,
-    DDD int not null,
-    Numero int not null,
+    CodigoPais varchar(50) not null,
+    DDD varchar(50) not null,
+    Numero varchar(50) not null,
     IDUsuario int not null,
     Acao varchar(100)
 );
