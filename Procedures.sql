@@ -13,7 +13,7 @@ BEGIN
     
     DELETE FROM Usuario WHERE ID = idUser;
     
-    IF(@permissao = 2)  THEN ROLLBACK ;
+    IF(@permissao > 1)  THEN ROLLBACK ;
     ELSE COMMIT;
     END IF;
 END;
