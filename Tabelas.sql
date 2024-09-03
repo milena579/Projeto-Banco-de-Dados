@@ -12,15 +12,15 @@ CREATE TABLE Usuario (
 	ID int primary key not null auto_increment,
     IDpermissao int, foreign key (IDPermissao) references Permissao(ID),
     Nome varchar(255) not null,
-    CPF int not null,
+    CPF varchar(25) not null,
     DataNasc date not null,
     DataCadastro datetime default CURRENT_TIMESTAMP
 );
 
 CREATE TABLE Endereco (
 	ID int primary key not null auto_increment,
-    CEP int not null,
-    Numero int not null,
+    CEP varchar(50) not null,
+    Numero varchar(50) not null,
     Complemento varchar(50),
 	IDUsuario int not null, 
     foreign key (IDUsuario) references Usuario(ID)
@@ -30,9 +30,9 @@ CREATE TABLE Endereco (
 
 CREATE TABLE Telefone (
 	ID int primary key not null auto_increment,
-    CodigoPais int not null,
-    DDD int not null,
-    Numero int not null,
+    CodigoPais varchar(50) not null,
+    DDD varchar(50) not null,
+    Numero varchar(50) not null,
     IDUsuario int not null, 
     foreign key (IDUsuario) references Usuario(ID)
     ON DELETE CASCADE
