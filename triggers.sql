@@ -87,3 +87,58 @@ END;
 DELIMITER ;
 
 --triggers churrasqueira
+DELIMITER //
+CREATE TRIGGER deleteLogChurrasqueira
+BEFORE delete on Churrasqueira
+FOR EACH ROW
+BEGIN
+	INSERT INTO LogChurrasqueira(IDChurrasqueira, Nome, Capacidade, Acao)
+    VALUES(old.ID, old.Nome, old.Capacidade, 'Churrasqueira DELETADA');
+END;
+//
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER insertLogChurrasqueira
+AFTER insert on Churrasqueira
+FOR EACH ROW
+BEGIN
+	INSERT INTO LogChurrasqueira(IDChurrasqueira, Nome, Capacidade, Acao)
+    VALUES(new.ID, new.Nome, new.Capacidade, 'Churrasqueira INSERIDA');
+END;
+//
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER updateLogChurrasqueira
+AFTER update on Churrasqueira
+FOR EACH ROW
+BEGIN
+	INSERT INTO LogChurrasqueira(IDChurrasqueira, Nome, Capacidade, Acao)
+    VALUES(new.ID, new.Nome, new.Capacidade, 'Churrasqueira EDITADA');
+END;
+//
+DELIMITER ;
+
+-- trigger reserva churrasqueira
+DELIMITER //
+CREATE TRIGGER deleteLogReservaChurrasqueira
+BEFORE delete on ReservaChurrasqueira
+FOR EACH ROW
+BEGIN
+	INSERT INTO LogReservaChurrasqueira(IDReservaChurrasqueira, DataReserva, IDUsuario, IDChurrasquira, Acao)
+    VALUES(old.ID, old.DataReserva, old.IDUsuario, old.IDChurrasqueira, 'ReservaChurrasqueira DELETADA');
+END;
+//
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER insertLogReservaChurrasqueira
+BEFORE insert on ReservaChurrasqueira
+FOR EACH ROW
+BEGIN
+	INSERT INTO LogReservaChurrasqueira(IDReservaChurrasqueira, DataReserva, IDUsuario, IDChurrasquira, Acao)
+    VALUES(new.ID, new.DataReserva, new.IDUsuario, new.IDChurrasqueira, 'ReservaChurrasqueira INSERIDA');
+END;
+//
+DELIMITER ;
