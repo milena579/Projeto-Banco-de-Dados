@@ -1,0 +1,4 @@
+Criar procedures para:
+proibir editar reservas,
+proibir aumentar permissao,
+proibir deletar permissao
