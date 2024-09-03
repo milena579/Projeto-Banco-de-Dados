@@ -29,9 +29,12 @@ DELIMITER ;
 
 DELIMITER //
 create trigger updateLogUsuario
-after update on Usuario
+before update on Usuario
 FOR EACH ROW
 BEGIN
+	IF(new.IDPermissao > old.IDPermissao) then set new.IDPermissao = old.IDPermissao;
+    end if;
+    
 	INSERT INTO LogUsuario(IDUsuario, IDpermissao, Nome, CPF, DataNasc, DataCadastro, Acao)
     VALUES(new.ID, new.IDPermissao, new.Nome, new.CPF, new.DataNasc, new.DataCadastro, 'Usuario EDITADO');
 END;
