@@ -1,74 +1,82 @@
-use Clube;
+USE Clube;
 
 CREATE TABLE LogPermissao (
-	IDLogPermissao int primary key not null auto_increment,
-    IDPermissao int not null,
-    NivelPermissao int not null,
-    Descricao varchar(100) not null,
-    Acao varchar(100)
+    IDLogPermissao INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    IDPermissao INT NOT NULL,
+    NivelPermissao INT NOT NULL,
+    Descricao VARCHAR(100) NOT NULL,
+    Acao VARCHAR(100),
+    DataAcao DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE LogUsuario (
-	IDLogUsuario int primary key not null auto_increment,
-    IDUsuario int not null,
-    IDpermissao int,
-    Nome varchar(255) not null,
-    CPF varchar(25) not null,
-    DataNasc date not null,
-    DataCadastro datetime,
-    Acao varchar(100)
+    IDLogUsuario INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    IDUsuario INT NOT NULL,
+    IDPermissao INT,
+    Nome VARCHAR(255) NOT NULL,
+    CPF VARCHAR(25) NOT NULL,
+    DataNasc DATE NOT NULL,
+    DataCadastro DATETIME,
+    Acao VARCHAR(100),
+    DataAcao DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE LogEndereco(
-	IDLogEndereco int primary key not null auto_increment,
-    IDEndereco int not null,
-    CEP varchar(50) not null,
-    Numero varchar(50) not null,
-    Complemento varchar(50),
-	IDUsuario int not null,
-    Acao varchar(100)
+CREATE TABLE LogEndereco (
+    IDLogEndereco INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    IDEndereco INT NOT NULL,
+    CEP VARCHAR(50) NOT NULL,
+    Numero VARCHAR(50) NOT NULL,
+    Complemento VARCHAR(50),
+    IDUsuario INT NOT NULL,
+    Acao VARCHAR(100),
+    DataAcao DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE LogTelefone (
-	IDLogTelefone int primary key not null auto_increment,
-    IDTelefone int not null,
-    CodigoPais varchar(50) not null,
-    DDD varchar(50) not null,
-    Numero varchar(50) not null,
-    IDUsuario int not null,
-    Acao varchar(100)
+    IDLogTelefone INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    IDTelefone INT NOT NULL,
+    CodigoPais VARCHAR(50) NOT NULL,
+    DDD VARCHAR(50) NOT NULL,
+    Numero VARCHAR(50) NOT NULL,
+    IDUsuario INT NOT NULL,
+    Acao VARCHAR(100),
+    DataAcao DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE LogQuadra (
-	IDLogQuadra int primary key not null auto_increment,
-    IDQuadra int not null,
-    Nome varchar(50) not null,
-    Acao varchar(100)
+    IDLogQuadra INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    IDQuadra INT NOT NULL,
+    Nome VARCHAR(50) NOT NULL,
+    Acao VARCHAR(100),
+    DataAcao DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE LogReservaQuadra (
-	IDLogReservaQuadra int primary key not null auto_increment,
-    IDReservaQuadra int not null,
-    DataHoraInicio datetime not null,
-    DataHoraFim datetime not null,
-    IDUsuario int not null, 
-    IDQuadra int not null,
-    Acao varchar(100)
+    IDLogReservaQuadra INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    IDReservaQuadra INT NOT NULL,
+    DataHoraInicio DATETIME NOT NULL,
+    DataHoraFim DATETIME NOT NULL,
+    IDUsuario INT NOT NULL,
+    IDQuadra INT NOT NULL,
+    Acao VARCHAR(100),
+    DataAcao DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-create table LogChurrasqueira(
-	IDLogChurrasqueira int primary key auto_increment not null,
-    IDChurrasqueira int not null,
-    Nome varchar(50) not null,
-    Capacidade int not null,
-    Acao varchar(100)
-    );
-    
-    create table LogReservaChurrasqueira(
-	IDLogReservaChurrasqueira int primary key auto_increment not null,
-    IDReservaChurrasqueira int not null,
-    DataReserva date not null,
-    IDUsuario int not null,
-	IDChurrasqueira int not null,
-    Acao varchar(100)
-	);
+CREATE TABLE LogChurrasqueira (
+    IDLogChurrasqueira INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    IDChurrasqueira INT NOT NULL,
+    Nome VARCHAR(50) NOT NULL,
+    Capacidade INT NOT NULL,
+    Acao VARCHAR(100),
+    DataAcao DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE LogReservaChurrasqueira (
+    IDLogReservaChurrasqueira INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    IDReservaChurrasqueira INT NOT NULL,
+    DataReserva DATE NOT NULL,
+    IDUsuario INT NOT NULL,
+    IDChurrasqueira INT NOT NULL,
+    Acao VARCHAR(100),
+    DataAcao DATETIME DEFAULT CURRENT_TIMESTAMP
+);
